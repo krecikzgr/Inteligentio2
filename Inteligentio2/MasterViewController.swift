@@ -14,24 +14,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
+    var viewsToShow: [UIViewController] = []
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
         if let split = splitViewController {
-            let controllers = split.viewControllers
+            let details3 = DetailViewController()
             let details2 = DetailViewController()
             details2.view.backgroundColor = UIColor.red
-            let details3 = DetailViewController()
             details3.view.backgroundColor = UIColor.green
-            split.viewControllers.append(details2)
-            split.viewControllers.append(details3)
-
+            viewsToShow.append(details2)
+            viewsToShow.append(details3)
         }
-
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +48,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.viewsToShow.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,12 +63,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("DID SELECT ROW \(indexPath)")
-         print(self.splitViewController?.viewControllers.count)
-                 if let split = splitViewController {
-                    split.showDetailViewController(split.viewControllers[indexPath.row], sender: self)
-                }
-
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if let split = appDelegate.window?.rootViewController as? UISplitViewController {
+            split.showDetailViewController(self.viewsToShow[indexPath.row], sender: self)
+        }
     }
 }
 
