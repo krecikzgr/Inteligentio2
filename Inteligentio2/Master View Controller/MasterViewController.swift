@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GenericDataSources
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
