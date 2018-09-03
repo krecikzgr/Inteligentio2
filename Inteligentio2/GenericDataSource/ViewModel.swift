@@ -13,15 +13,28 @@ protocol ViewItem {
 
 }
 
-class ViewSection {
-    var items:[ViewItem] = []
+protocol ViewSection {
+    associatedtype T
+    var items:[T] {get set}
 }
 
-class TableViewViewModel:NSObject {
-    var sections:[ViewSection] = []
+extension ViewSection {
+    func getHeaderTitle() -> String? {
+        return nil
+    }
+
+    func getHeaderView() -> UIView? {
+        return nil
+    }
 }
 
-extension TableViewViewModel:UITableViewDataSource {
+class TableViewViewModel<T:ViewSection, Cell:UITableViewCell>:NSObject,UITableViewDataSource where Cell:ConfigurableView, Cell.T == T.T {
+    var sections:[T]
+
+    init(sections:[T]) {
+        self.sections = sections
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].items.count
     }
@@ -32,6 +45,10 @@ extension TableViewViewModel:UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].getHeaderTitle()
     }
 
 }

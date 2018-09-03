@@ -23,6 +23,7 @@
 		3ACB35C2213C39FD00F91D10 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35C1213C39FD00F91D10 /* ViewModel.swift */; };
 		3ACB35C5213C3DFF00F91D10 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35C4213C3DFF00F91D10 /* UITableViewExtension.swift */; };
 		3ACB35C7213C3E1000F91D10 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35C6213C3E1000F91D10 /* UITableViewCellExtension.swift */; };
+		3ADB4EBD213DBF8400088908 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EBC213DBF8400088908 /* ConfigurableCell.swift */; };
 		4F4A97147C0BA06B38760E6D /* Pods_Inteligentio2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFC631904329CC5A45286E /* Pods_Inteligentio2UITests.framework */; };
 		C301F1F396435B5078315ECA /* Pods_Inteligentio2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524E9E965A5F0DC83912A018 /* Pods_Inteligentio2Tests.framework */; };
 		CC3CD80D0D86B97579477348 /* Pods_Inteligentio2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A124749A4668F599107EE9A /* Pods_Inteligentio2.framework */; };
@@ -68,6 +69,7 @@
 		3ACB35C1213C39FD00F91D10 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		3ACB35C4213C3DFF00F91D10 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3ACB35C6213C3E1000F91D10 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		3ADB4EBC213DBF8400088908 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		524E9E965A5F0DC83912A018 /* Pods_Inteligentio2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inteligentio2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863B48A5790AD496C74EF0A2 /* Pods-Inteligentio2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inteligentio2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Inteligentio2UITests/Pods-Inteligentio2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		8A124749A4668F599107EE9A /* Pods_Inteligentio2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inteligentio2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 			children = (
 				3ACB35C4213C3DFF00F91D10 /* UITableViewExtension.swift */,
 				3ACB35C6213C3E1000F91D10 /* UITableViewCellExtension.swift */,
+				3ADB4EBC213DBF8400088908 /* ConfigurableCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				3ABF0BF521373D26007C2C25 /* AppDelegate.swift in Sources */,
 				3ABF0BF821373D26007C2C25 /* Inteligentio2.xcdatamodeld in Sources */,
 				3ACB35BF213C351300F91D10 /* PlacementMargins.swift in Sources */,
+				3ADB4EBD213DBF8400088908 /* ConfigurableCell.swift in Sources */,
 				3ABF0BFA21373D26007C2C25 /* MasterViewController.swift in Sources */,
 				3ACB35B7213C329100F91D10 /* MasterListCell.swift in Sources */,
 				3ABF0BFC21373D26007C2C25 /* DetailViewController.swift in Sources */,
