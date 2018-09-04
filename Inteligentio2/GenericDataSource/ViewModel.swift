@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ViewItem {
-
+    var cellType:
 }
 
 protocol ViewSection {
@@ -28,7 +28,7 @@ extension ViewSection {
     }
 }
 
-class TableViewViewModel<T:ViewSection, Cell:UITableViewCell>:NSObject,UITableViewDataSource where Cell:ConfigurableView, Cell.T == T.T {
+class TableViewViewModel<T:ViewSection, Cell:UITableViewCell>:NSObject,UITableViewDataSource where Cell:ConfigurableCell, Cell.T == T.T {
     var sections:[T]
 
     init(sections:[T]) {
@@ -40,7 +40,12 @@ class TableViewViewModel<T:ViewSection, Cell:UITableViewCell>:NSObject,UITableVi
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withClass: Cell.self)
+
+
+
+
+        return cell!
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
