@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class DataSouce: NSObject {
+class DataSource: NSObject {
      var items: [CellConfiguratorType] = []
 }
 
-extension DataSouce: UITableViewDataSource {
+extension DataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

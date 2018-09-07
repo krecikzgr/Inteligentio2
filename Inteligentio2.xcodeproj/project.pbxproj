@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ABD42CA2142F270005E4C81 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */; };
+		3ABD42CB2142F270005E4C81 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */; };
+		3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */; };
 		3ABF0BF521373D26007C2C25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF0BF421373D26007C2C25 /* AppDelegate.swift */; };
 		3ABF0BF821373D26007C2C25 /* Inteligentio2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF0BF621373D26007C2C25 /* Inteligentio2.xcdatamodeld */; };
 		3ABF0BFA21373D26007C2C25 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF0BF921373D26007C2C25 /* MasterViewController.swift */; };
@@ -20,7 +23,7 @@
 		3ACB35BB213C334D00F91D10 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35BA213C334D00F91D10 /* UIViewExtension.swift */; };
 		3ACB35BD213C34D000F91D10 /* ConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35BC213C34D000F91D10 /* ConstraintBuilder.swift */; };
 		3ACB35BF213C351300F91D10 /* PlacementMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB35BE213C351300F91D10 /* PlacementMargins.swift */; };
-		3ADB4EC02141A70800088908 /* DataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EBE2141A70800088908 /* DataSouce.swift */; };
+		3ADB4EC02141A70800088908 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EBE2141A70800088908 /* DataSource.swift */; };
 		3ADB4EC12141A70800088908 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EBF2141A70800088908 /* CellConfigurator.swift */; };
 		3ADB4EC42141AAD400088908 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EC32141AAD400088908 /* IconNames.swift */; };
 		3ADB4EC62141AB7500088908 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB4EC52141AB7500088908 /* UIImageExtension.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		3ABF0BF121373D26007C2C25 /* Inteligentio2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inteligentio2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ABF0BF421373D26007C2C25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ABF0BF721373D26007C2C25 /* Inteligentio2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inteligentio2.xcdatamodel; sourceTree = "<group>"; };
@@ -67,7 +73,7 @@
 		3ACB35BA213C334D00F91D10 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3ACB35BC213C34D000F91D10 /* ConstraintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintBuilder.swift; sourceTree = "<group>"; };
 		3ACB35BE213C351300F91D10 /* PlacementMargins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementMargins.swift; sourceTree = "<group>"; };
-		3ADB4EBE2141A70800088908 /* DataSouce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSouce.swift; sourceTree = "<group>"; };
+		3ADB4EBE2141A70800088908 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		3ADB4EBF2141A70800088908 /* CellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		3ADB4EC32141AAD400088908 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 		3ADB4EC52141AB7500088908 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -111,6 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3ABD42C72142EE7A005E4C81 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
 		3ABF0BE821373D26007C2C25 = {
 			isa = PBXGroup;
 			children = (
@@ -172,8 +185,8 @@
 		3ACB35B2213C2CA800F91D10 /* Master View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3ABD42C72142EE7A005E4C81 /* presenter */,
 				3ACB35B5213C327D00F91D10 /* views */,
-				3ABF0BF921373D26007C2C25 /* MasterViewController.swift */,
 			);
 			path = "Master View Controller";
 			sourceTree = "<group>";
@@ -181,6 +194,7 @@
 		3ACB35B5213C327D00F91D10 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3ABF0BF921373D26007C2C25 /* MasterViewController.swift */,
 				3ACB35B6213C329100F91D10 /* MasterListCell.swift */,
 			);
 			path = views;
@@ -201,7 +215,10 @@
 			children = (
 				3ADB4EC52141AB7500088908 /* UIImageExtension.swift */,
 				3ACB35BA213C334D00F91D10 /* UIViewExtension.swift */,
+				3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */,
+				3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */,
 				3ADB4EC72141B03C00088908 /* UIColorExtension.swift */,
+				3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -217,7 +234,7 @@
 		3ACB35C3213C3DF300F91D10 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3ADB4EBE2141A70800088908 /* DataSouce.swift */,
+				3ADB4EBE2141A70800088908 /* DataSource.swift */,
 				3ADB4EBF2141A70800088908 /* CellConfigurator.swift */,
 			);
 			path = Utils;
@@ -551,15 +568,18 @@
 				3ABF0BF521373D26007C2C25 /* AppDelegate.swift in Sources */,
 				3ABF0BF821373D26007C2C25 /* Inteligentio2.xcdatamodeld in Sources */,
 				3ACB35BF213C351300F91D10 /* PlacementMargins.swift in Sources */,
+				3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */,
 				3ADB4EC42141AAD400088908 /* IconNames.swift in Sources */,
 				3ABF0BFA21373D26007C2C25 /* MasterViewController.swift in Sources */,
 				3ADB4EC82141B03C00088908 /* UIColorExtension.swift in Sources */,
-				3ADB4EC02141A70800088908 /* DataSouce.swift in Sources */,
+				3ADB4EC02141A70800088908 /* DataSource.swift in Sources */,
 				3ACB35B7213C329100F91D10 /* MasterListCell.swift in Sources */,
 				3ABF0BFC21373D26007C2C25 /* DetailViewController.swift in Sources */,
 				3ADB4EC12141A70800088908 /* CellConfigurator.swift in Sources */,
 				3ACB35BD213C34D000F91D10 /* ConstraintBuilder.swift in Sources */,
+				3ABD42CB2142F270005E4C81 /* UITableViewCellExtension.swift in Sources */,
 				3ADB4EC62141AB7500088908 /* UIImageExtension.swift in Sources */,
+				3ABD42CA2142F270005E4C81 /* UITableViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
