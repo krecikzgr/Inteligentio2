@@ -15,10 +15,10 @@
 		3AABBE05219A243D00E119DB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE04219A243D00E119DB /* Repository.swift */; };
 		3AABBE0A219B6A1A00E119DB /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE09219B6A1A00E119DB /* SwitchCell.swift */; };
 		3AABBE0C219B792200E119DB /* ScenesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE0B219B792200E119DB /* ScenesController.swift */; };
-		3AABBE0F219B7ED800E119DB /* ScenesListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE0E219B7ED800E119DB /* ScenesListContract.swift */; };
 		3AABBE12219B7F6000E119DB /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE11219B7F6000E119DB /* Scene.swift */; };
 		3AABBE14219B80B600E119DB /* ScenesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE13219B80B600E119DB /* ScenesDataSource.swift */; };
 		3AABBE16219B82E100E119DB /* ScenesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE15219B82E100E119DB /* ScenesPresenter.swift */; };
+		3AABBE18219B886D00E119DB /* ScenesListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE17219B886D00E119DB /* ScenesListContract.swift */; };
 		3ABD42CA2142F270005E4C81 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */; };
 		3ABD42CB2142F270005E4C81 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */; };
 		3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */; };
@@ -71,10 +71,10 @@
 		3AABBE04219A243D00E119DB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		3AABBE09219B6A1A00E119DB /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		3AABBE0B219B792200E119DB /* ScenesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesController.swift; sourceTree = "<group>"; };
-		3AABBE0E219B7ED800E119DB /* ScenesListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesListContract.swift; sourceTree = "<group>"; };
 		3AABBE11219B7F6000E119DB /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		3AABBE13219B80B600E119DB /* ScenesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesDataSource.swift; sourceTree = "<group>"; };
 		3AABBE15219B82E100E119DB /* ScenesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesPresenter.swift; sourceTree = "<group>"; };
+		3AABBE17219B886D00E119DB /* ScenesListContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesListContract.swift; sourceTree = "<group>"; };
 		3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 		3AABBDFE2198FFD700E119DB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				3AABBE19219B887F00E119DB /* contract */,
 				3AABBE10219B7F4000E119DB /* model */,
-				3AABBE0D219B793600E119DB /* contract */,
 				3AABBE07219B692000E119DB /* view */,
 				3AABBE06219B690000E119DB /* presenter */,
 				3AABBDFF2198FFF700E119DB /* repository */,
@@ -208,20 +208,20 @@
 			path = views;
 			sourceTree = "<group>";
 		};
-		3AABBE0D219B793600E119DB /* contract */ = {
-			isa = PBXGroup;
-			children = (
-				3AABBE0E219B7ED800E119DB /* ScenesListContract.swift */,
-			);
-			path = contract;
-			sourceTree = "<group>";
-		};
 		3AABBE10219B7F4000E119DB /* model */ = {
 			isa = PBXGroup;
 			children = (
 				3AABBE11219B7F6000E119DB /* Scene.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		3AABBE19219B887F00E119DB /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				3AABBE17219B886D00E119DB /* ScenesListContract.swift */,
+			);
+			path = contract;
 			sourceTree = "<group>";
 		};
 		3ABD42C72142EE7A005E4C81 /* presenter */ = {
@@ -606,12 +606,12 @@
 				3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */,
 				3ADB4EC42141AAD400088908 /* IconNames.swift in Sources */,
 				3AABBDFD2198649900E119DB /* GenericRequest.swift in Sources */,
+				3AABBE18219B886D00E119DB /* ScenesListContract.swift in Sources */,
 				3AABBE0A219B6A1A00E119DB /* SwitchCell.swift in Sources */,
 				3ABF0BFA21373D26007C2C25 /* MasterViewController.swift in Sources */,
 				3AABBE0C219B792200E119DB /* ScenesController.swift in Sources */,
 				3ADB4EC82141B03C00088908 /* UIColorExtension.swift in Sources */,
 				3ADB4EC02141A70800088908 /* DataSource.swift in Sources */,
-				3AABBE0F219B7ED800E119DB /* ScenesListContract.swift in Sources */,
 				3ACB35B7213C329100F91D10 /* MasterListCell.swift in Sources */,
 				3ABF0BFC21373D26007C2C25 /* DetailViewController.swift in Sources */,
 				3AABBE05219A243D00E119DB /* Repository.swift in Sources */,
