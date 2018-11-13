@@ -8,15 +8,13 @@
 
 import Foundation
 
-protocol ScenesViewProtocol {
+protocol ScenesViewProtocol:NSObjectProtocol {
     func set(scenes:[SwitchCellData])
 }
 
 protocol ScenesPresenterProtocol {
-    func getScenes()
-    func setRepository(repository:ScenesRepository)
+    func loadScenes(page:Int, size:Int)
 }
 
 protocol ScenesRepositoryProtocol {
-    func loadScenes(page:Int, size:Int)
 }

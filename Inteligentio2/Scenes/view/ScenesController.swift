@@ -12,23 +12,15 @@ import UIKit
 
 class ScenesController: UITableViewController, ScenesViewProtocol {
     var dataSource: ScenesDtaSource?
-    let scenesRepository = ScenesRepository()
+    var presenter: ScenesPresenterProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initDataSource()
         self.initTableView()
         self.tableView.reloadData()
-
-        self.scenesRepository.getAll(baseAddress: "http://192.168.0.111:3001/", page: 0, size: 0) { [unowned self] (result) in
-            switch result {
-            case let .success(objects):
-                print("Success \(objects)")
-
-            case let .failure(error):
-                print("failure \(error)")
-            }
-        }
+        self.presenter = ScenesPresenter(view: self)
+        self.presenter?.loadScenes(page: 0, size: 100)
     }
 
 

@@ -13,23 +13,12 @@ class MasterViewController: UITableViewController {
 
     var viewsToShow: [UIViewController] = []
     var dataSource:MasterDataSource?
-    let scenesRepository = ScenesRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initDataSource()
         self.initTableView()
         self.tableView.reloadData()
-
-        self.scenesRepository.getAll(baseAddress: "http://192.168.0.111:3001/", page: 0, size: 0) { [unowned self] (result) in
-            switch result {
-            case let .success(objects):
-                print("Success \(objects)")
-
-            case let .failure(error):
-                print("failure \(error)")
-        }
-    }
     }
 
 
@@ -44,8 +33,7 @@ class MasterViewController: UITableViewController {
     func initDataSource() {
         self.dataSource = MasterDataSource()
         self.dataSource?.onRowSelection = { [unowned self] index in
-            let viewController = UIViewController()
-            viewController.view.backgroundColor = .red
+            let viewController = ScenesController()
             self.splitViewController?.showDetailViewController(viewController, sender: self)
         }
     }

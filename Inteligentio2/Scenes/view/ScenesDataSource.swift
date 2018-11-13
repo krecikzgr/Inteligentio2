@@ -11,7 +11,6 @@ import Foundation
 class ScenesDtaSource:DataSource {
     override init() {
         super.init()
-        self.initData()
     }
 
     func setViewData(viewData:[SwitchCellData]) {

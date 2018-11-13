@@ -70,9 +70,9 @@ open class SwitchCell: UITableViewCell {
         }
         self.switchButton = UISwitch()
         self.switchButton?.translatesAutoresizingMaskIntoConstraints = false
-        self.switchButton?.backgroundColor = .white
+        //self.switchButton?.backgroundColor = .white
         self.switchButton?.tintColor = UIColor.switchBlueColor()
-        self.switchButton?.layer.cornerRadius = 16.0
+        self.switchButton?.onTintColor = UIColor.switchBlueColor()
 
         let margins = PlacementMargins(leftMargin: nil, rightMargin: -5, topMargin: 10, bottomMargin: -10)
         self.containerView?.add(child: self.switchButton!, configuration: margins)
@@ -94,7 +94,7 @@ open class SwitchCell: UITableViewCell {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         self.titleLabel?.textColor = .white
 
-        let margins = PlacementMargins(leftMargin: -5, rightMargin: nil, topMargin: 10, bottomMargin: -10)
+        let margins = PlacementMargins(leftMargin: 5, rightMargin: nil, topMargin: 10, bottomMargin: -10)
         self.containerView?.add(child: self.titleLabel!, configuration: margins)
         self.titleLabel?.pinTo(viewOnRight: self.switchButton!, spacing: -5)
     }
