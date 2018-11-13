@@ -8,41 +8,53 @@
 
 import UIKit
 import CoreData
-import GenericDataSources
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    var detailViewController: DetailViewController? = nil
-    var managedObjectContext: NSManagedObjectContext? = nil
+class Scene: Codable {
+    var tableName:String?
+    var description:String?
+    var id:Int?
+}
+
+class MasterViewController: UITableViewController {
 
     var viewsToShow: [UIViewController] = []
-    let dataSource = DataSource()
-    
+    var dataSource:MasterDataSource?
+    let scenesRepository = ScenesRepository()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initDataSource()
         self.initTableView()
-        self.initData()
         self.tableView.reloadData()
+
+        self.scenesRepository.getAll(baseAddress: "http://192.168.0.111:3001/", page: 0, size: 0) { [unowned self] (result) in
+            switch result {
+            case let .success(objects):
+                print("Success \(objects)")
+
+            case let .failure(error):
+                print("failure \(error)")
+        }
+    }
     }
 
-
-    func initData() {
-        self.dataSource.items = [
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Scenes")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Rooms")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Events")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Sensors")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Schedule")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "SystemStatus")),
-            CellConfigurator<MasterListCell>(viewData: MasterViewCellData(identifier: "", title: "Settings"))
-        ]
-    }
 
     func initTableView() {
         self.initLayout()
         self.tableView.dataSource = self.dataSource
+        self.tableView.delegate = self.dataSource
         self.tableView.register(cellClass: MasterListCell.self)
         self.tableView.separatorStyle = .none
+    }
+
+    func initDataSource() {
+        self.dataSource = MasterDataSource()
+        self.dataSource?.onRowSelection = { [unowned self] index in
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .red
+            self.splitViewController?.showDetailViewController(viewController, sender: self)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,5 +66,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
 }
 

@@ -31,7 +31,7 @@ extension UIImage {
     }
 
     func toData() -> Data? {
-        guard let data = UIImageJPEGRepresentation(self, 1.0) else {
+        guard let data = self.jpegData(compressionQuality: 1.0) else {
             return nil
         }
         return data

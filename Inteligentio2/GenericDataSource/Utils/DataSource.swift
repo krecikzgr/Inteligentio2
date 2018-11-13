@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
+typealias OnRowSelection = (IndexPath) -> Void
+
 class DataSource: NSObject {
      var items: [CellConfiguratorType] = []
+     var onRowSelection: OnRowSelection?
 }
 
-extension DataSource: UITableViewDataSource {
+extension DataSource: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -24,4 +27,11 @@ extension DataSource: UITableViewDataSource {
         cellConfigurator.update(cell: cell)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let onRowSelectionAction = self.onRowSelection else {
+            return
+        }
+        self.onRowSelection!(indexPath)
+    }
 }
+

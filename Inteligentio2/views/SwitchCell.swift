@@ -1,26 +1,30 @@
 //
-//  MasterListCell.swift
+//  SwitchCell.swift
 //  Inteligentio2
 //
-//  Created by Adrian on 02.09.2018.
+//  Created by Adrian on 13/11/2018.
 //  Copyright © 2018 AdrianKaleta. All rights reserved.
 //
 
 import Foundation
-import UIKit
+import  UIKit
 
-struct MasterViewCellData {
+typealias SwitchStatusChanged = (Bool) -> Void
+
+struct SwitchCellData {
     var identifier:String
     let title:String
-    //let iconName: IconNames
+    var switchDataState:Bool
+    var switchSatusChanged: SwitchStatusChanged?
 }
 
-open class MasterListCell: UITableViewCell {
+open class SwitchCell: UITableViewCell {
 
-    var icon: UIImageView?
     var titleLabel:UILabel?
     var containerView:UIView?
     var identifier:String = ""
+    var switchButton:UISwitch?
+    fileprivate var switchSatusChanged: SwitchStatusChanged?
 
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,7 +33,7 @@ open class MasterListCell: UITableViewCell {
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
         self.myInit()
     }
 
@@ -37,26 +41,10 @@ open class MasterListCell: UITableViewCell {
     func myInit() {
         self.initCell()
         self.initContainerView()
-        self.initImageButton()
+        self.initSwichButton()
         self.initTitleLabel()
     }
 
-    fileprivate func initImageButton() {
-
-        guard self.icon == nil else {
-            return
-        }
-
-        self.icon = UIImageView()
-        self.icon?.translatesAutoresizingMaskIntoConstraints = false
-        self.icon?.tintColor = .white
-
-        self.containerView!.addSubview(self.icon!)
-        self.icon?.set(width: 32)
-        self.icon?.setHeight(height: 32)
-        self.icon?.alignIn(y: 0.0)
-        self.icon?.pinToSuperviewLeft(spacing: 10)
-    }
 
     fileprivate func initCell() {
         self.backgroundColor = UIColor.clear
@@ -73,7 +61,28 @@ open class MasterListCell: UITableViewCell {
         self.containerView?.backgroundColor = UIColor.mainBackground()
         let placementMargins = PlacementMargins(leftMargin: 10, rightMargin: -10, topMargin: 10, bottomMargin: -10)
         self.add(child: self.containerView!, configuration: placementMargins)
-         self.containerView?.setHeight(height: 45)
+        self.containerView?.setHeight(height: 45)
+    }
+
+    fileprivate func initSwichButton() {
+        guard self.switchButton == nil else {
+            return
+        }
+        self.switchButton = UISwitch()
+        self.switchButton?.translatesAutoresizingMaskIntoConstraints = false
+        self.switchButton?.backgroundColor = .white
+        self.switchButton?.tintColor = UIColor.switchBlueColor()
+        self.switchButton?.layer.cornerRadius = 16.0
+
+        let margins = PlacementMargins(leftMargin: nil, rightMargin: -5, topMargin: 10, bottomMargin: -10)
+        self.containerView?.add(child: self.switchButton!, configuration: margins)
+    }
+
+    @objc fileprivate func switchChangedState(){
+        guard let switchAction = self.switchSatusChanged else {
+            return
+        }
+        switchAction(self.switchButton?.isOn ?? false)
     }
 
     fileprivate func initTitleLabel() {
@@ -85,18 +94,19 @@ open class MasterListCell: UITableViewCell {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         self.titleLabel?.textColor = .white
 
-        let margins = PlacementMargins(leftMargin: nil, rightMargin: -5, topMargin: 10, bottomMargin: -10)
+        let margins = PlacementMargins(leftMargin: -5, rightMargin: nil, topMargin: 10, bottomMargin: -10)
         self.containerView?.add(child: self.titleLabel!, configuration: margins)
-        self.titleLabel?.pinTo(viewOnLeft: self.icon!, spacing: 10)
+        self.titleLabel?.pinTo(viewOnRight: self.switchButton!, spacing: -5)
     }
 }
 
-extension MasterListCell: Updatable {
-    typealias ViewData = MasterViewCellData
+extension SwitchCell: Updatable {
+    typealias ViewData = SwitchCellData
 
-    func update(viewData: MasterViewCellData) {
+    func update(viewData: SwitchCellData) {
         self.titleLabel?.text = viewData.title
         self.identifier = viewData.identifier
-        //self.icon?.image = UIImage.global(image: viewData.iconName)
+        self.switchButton?.isOn = viewData.switchDataState
+        self.switchSatusChanged = viewData.switchSatusChanged
     }
 }
