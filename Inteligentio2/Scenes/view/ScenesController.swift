@@ -1,18 +1,17 @@
 //
-//  MasterViewController.swift
+//  ScenesController.swift
 //  Inteligentio2
 //
-//  Created by Adrian on 29.08.2018.
+//  Created by Adrian on 13/11/2018.
 //  Copyright © 2018 AdrianKaleta. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import CoreData
 
-class MasterViewController: UITableViewController {
 
-    var viewsToShow: [UIViewController] = []
-    var dataSource:MasterDataSource?
+class ScenesController: UITableViewController, ScenesViewProtocol {
+    var dataSource: ScenesDtaSource?
     let scenesRepository = ScenesRepository()
 
     override func viewDidLoad() {
@@ -28,8 +27,8 @@ class MasterViewController: UITableViewController {
 
             case let .failure(error):
                 print("failure \(error)")
+            }
         }
-    }
     }
 
 
@@ -37,16 +36,14 @@ class MasterViewController: UITableViewController {
         self.initLayout()
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
-        self.tableView.register(cellClass: MasterListCell.self)
+        self.tableView.register(cellClass: SwitchCell.self)
         self.tableView.separatorStyle = .none
     }
 
     func initDataSource() {
-        self.dataSource = MasterDataSource()
+        self.dataSource = ScenesDtaSource()
         self.dataSource?.onRowSelection = { [unowned self] index in
-            let viewController = UIViewController()
-            viewController.view.backgroundColor = .red
-            self.splitViewController?.showDetailViewController(viewController, sender: self)
+            print("Did Selec Scene with indexPath \(index)")
         }
     }
 
@@ -58,6 +55,11 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func set(scenes: [SwitchCellData]) {
+        self.dataSource?.setViewData(viewData: scenes)
+        self.tableView.reloadData()
     }
 }
 
