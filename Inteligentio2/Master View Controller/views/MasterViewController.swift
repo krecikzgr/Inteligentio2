@@ -9,6 +9,16 @@
 import UIKit
 import CoreData
 
+enum MainSection: Int {
+    case scenes = 0
+    case rooms = 1
+    case events = 2
+    case sensors = 3
+    case schedule = 4
+    case systemStatus = 5
+    case settings = 6
+}
+
 class MasterViewController: UITableViewController {
 
     var viewsToShow: [UIViewController] = []
@@ -33,8 +43,13 @@ class MasterViewController: UITableViewController {
     func initDataSource() {
         self.dataSource = MasterDataSource()
         self.dataSource?.onRowSelection = { [unowned self] index in
-            let viewController = ScenesController()
-            self.splitViewController?.showDetailViewController(viewController, sender: self)
+            switch  index.row {
+            case MainSection.scenes.rawValue:
+                let viewController = ScenesController()
+                self.splitViewController?.showDetailViewController(viewController, sender: self)
+            default:
+                break;
+            }
         }
     }
 

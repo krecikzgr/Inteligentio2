@@ -41,7 +41,7 @@ extension Repository {
             }
             let decoder = JSONDecoder()
             do {
-                let objectsArray = try decoder.decode([T].self, from: data)
+                let objectsArray = try decoder.decode(BaseListResponse<T>.self, from: data)
                 self.getObjectsResponse?(.success(objectsArray))
             }
             catch let error {
@@ -53,5 +53,9 @@ extension Repository {
     fileprivate func buildUrl(baseAdders:String)->String {
         print("requestURL: \(baseAdders + baseClass)")
         return baseAdders + baseClass;
+    }
+
+    fileprivate func unwrap(data:Data) {
+
     }
 }

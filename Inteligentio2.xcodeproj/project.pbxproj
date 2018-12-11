@@ -224,13 +224,6 @@
 			path = contract;
 			sourceTree = "<group>";
 		};
-		3ABD42C72142EE7A005E4C81 /* presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = presenter;
-			sourceTree = "<group>";
-		};
 		3ABF0BE821373D26007C2C25 = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +283,6 @@
 		3ACB35B2213C2CA800F91D10 /* Master View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3ABD42C72142EE7A005E4C81 /* presenter */,
 				3ACB35B5213C327D00F91D10 /* views */,
 			);
 			path = "Master View Controller";

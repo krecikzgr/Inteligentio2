@@ -25,18 +25,19 @@ class ScenesPresenter:ScenesPresenterProtocol {
         self.repository?.getAll(baseAddress: Server.address.rawValue, page: 0, size: 100) {
             [unowned self] (result) in
             switch result {
-            case let .success(scenes):
-                self.handleSuccess(scenes: scenes)
+            case let .success(result):
+                self.handleSuccess(result: result)
+            case let .failure(error):
+                print("load scenes error \(error)")
             default:
                 print("Some error")
             }
         }
     }
 
-    func handleSuccess(scenes:[Scene]) {
+    func handleSuccess(result:BaseListResponse<Scene>) {
         var viewData:[SwitchCellData] = []
-
-        for scene in scenes {
+        for scene in result.data ?? [] {
             var singleRow = SwitchCellData(identifier: "id", title: scene.description ?? "", switchDataState: false, switchSatusChanged: nil)
             viewData.append(singleRow)
         }

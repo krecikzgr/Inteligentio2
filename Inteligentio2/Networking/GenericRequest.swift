@@ -14,7 +14,6 @@ class RequestManager {
     static let sharedInstance = RequestManager();
     var isAuthenticated:Bool = false
     var requests:[GenericRequest] = []
-
     func authenticate(request:GenericRequest) {
 
     }

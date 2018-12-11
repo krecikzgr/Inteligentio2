@@ -12,18 +12,18 @@ import Foundation
 class ScenesRepository:Repository {
     typealias T = Scene
 
-    var baseClass: String = "scenes"
+    var baseClass: String = "scene"
 
     var getObjectsResponse: ((ListResult<Scene>) -> Void)?
 
     fileprivate var setSceneActiveResponse: ResultResponse?
 
     func setSceneAsActive(result:@escaping ResultResponse) {
-        self.setSceneActiveResponse = result
-        let resultObject = ApiResult()
-        resultObject.message = "Everything is ok"
-        resultObject.success = true
-        resultObject.statusCode = 200
-        self.setSceneActiveResponse?(.success(resultObject))
+//        self.setSceneActiveResponse = result
+//        let resultObject = ApiResult()
+//        resultObject.message = "Everything is ok"
+//        resultObject.success = true
+//        resultObject.statusCode = 200
+//        self.setSceneActiveResponse?(.success(resultObject))
     }
 }
