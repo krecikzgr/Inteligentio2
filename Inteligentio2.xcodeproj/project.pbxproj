@@ -19,6 +19,12 @@
 		3AABBE14219B80B600E119DB /* ScenesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE13219B80B600E119DB /* ScenesDataSource.swift */; };
 		3AABBE16219B82E100E119DB /* ScenesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE15219B82E100E119DB /* ScenesPresenter.swift */; };
 		3AABBE18219B886D00E119DB /* ScenesListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBE17219B886D00E119DB /* ScenesListContract.swift */; };
+		3AB8FA3021C1BC7F0014FE05 /* SensorsListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA2F21C1BC7F0014FE05 /* SensorsListContract.swift */; };
+		3AB8FA3321C1BD0B0014FE05 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA3221C1BD0B0014FE05 /* Sensor.swift */; };
+		3AB8FA3621C1BD700014FE05 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA3521C1BD700014FE05 /* SensorsController.swift */; };
+		3AB8FA3821C1BDC30014FE05 /* SensorsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA3721C1BDC30014FE05 /* SensorsDataSource.swift */; };
+		3AB8FA3B21C1BF0E0014FE05 /* SensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA3A21C1BF0E0014FE05 /* SensorsPresenter.swift */; };
+		3AB8FA3E21C1C0410014FE05 /* SensorsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8FA3D21C1C0410014FE05 /* SensorsRepository.swift */; };
 		3ABD42CA2142F270005E4C81 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */; };
 		3ABD42CB2142F270005E4C81 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */; };
 		3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */; };
@@ -75,6 +81,12 @@
 		3AABBE13219B80B600E119DB /* ScenesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesDataSource.swift; sourceTree = "<group>"; };
 		3AABBE15219B82E100E119DB /* ScenesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesPresenter.swift; sourceTree = "<group>"; };
 		3AABBE17219B886D00E119DB /* ScenesListContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesListContract.swift; sourceTree = "<group>"; };
+		3AB8FA2F21C1BC7F0014FE05 /* SensorsListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsListContract.swift; sourceTree = "<group>"; };
+		3AB8FA3221C1BD0B0014FE05 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		3AB8FA3521C1BD700014FE05 /* SensorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsController.swift; sourceTree = "<group>"; };
+		3AB8FA3721C1BDC30014FE05 /* SensorsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsDataSource.swift; sourceTree = "<group>"; };
+		3AB8FA3A21C1BF0E0014FE05 /* SensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsPresenter.swift; sourceTree = "<group>"; };
+		3AB8FA3D21C1C0410014FE05 /* SensorsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsRepository.swift; sourceTree = "<group>"; };
 		3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3ABD42C92142F270005E4C81 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -224,6 +236,59 @@
 			path = contract;
 			sourceTree = "<group>";
 		};
+		3AB8FA2D21C1BC500014FE05 /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA3C21C1C0320014FE05 /* repository */,
+				3AB8FA3921C1BF020014FE05 /* presenter */,
+				3AB8FA3421C1BD620014FE05 /* view */,
+				3AB8FA3121C1BD010014FE05 /* model */,
+				3AB8FA2E21C1BC640014FE05 /* contract */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
+		3AB8FA2E21C1BC640014FE05 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA2F21C1BC7F0014FE05 /* SensorsListContract.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		3AB8FA3121C1BD010014FE05 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA3221C1BD0B0014FE05 /* Sensor.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		3AB8FA3421C1BD620014FE05 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA3521C1BD700014FE05 /* SensorsController.swift */,
+				3AB8FA3721C1BDC30014FE05 /* SensorsDataSource.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3AB8FA3921C1BF020014FE05 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA3A21C1BF0E0014FE05 /* SensorsPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		3AB8FA3C21C1C0320014FE05 /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				3AB8FA3D21C1C0410014FE05 /* SensorsRepository.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
 		3ABF0BE821373D26007C2C25 = {
 			isa = PBXGroup;
 			children = (
@@ -249,15 +314,16 @@
 		3ABF0BF321373D26007C2C25 /* Inteligentio2 */ = {
 			isa = PBXGroup;
 			children = (
-				3AABBE08219B6A0B00E119DB /* views */,
-				3AABBDFA2197485100E119DB /* Info.plist */,
-				3AABBDF72197467100E119DB /* others */,
 				3ACB35C0213C39E100F91D10 /* GenericDataSource */,
 				3ADB4EC22141AAC400088908 /* Globals */,
+				3AABBDFA2197485100E119DB /* Info.plist */,
 				3ACB35B2213C2CA800F91D10 /* Master View Controller */,
 				3AABBDF62197449900E119DB /* Networking */,
+				3AABBDF72197467100E119DB /* others */,
 				3AABBDFE2198FFD700E119DB /* Scenes */,
+				3AB8FA2D21C1BC500014FE05 /* Sensor */,
 				3ACB35B8213C333500F91D10 /* utils */,
+				3AABBE08219B6A0B00E119DB /* views */,
 			);
 			path = Inteligentio2;
 			sourceTree = "<group>";
@@ -588,6 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB8FA3321C1BD0B0014FE05 /* Sensor.swift in Sources */,
 				3ACB35BB213C334D00F91D10 /* UIViewExtension.swift in Sources */,
 				3AABBE012199000600E119DB /* ScenesRepository.swift in Sources */,
 				3AABBE12219B7F6000E119DB /* Scene.swift in Sources */,
@@ -595,17 +662,22 @@
 				3ABF0BF521373D26007C2C25 /* AppDelegate.swift in Sources */,
 				3ABF0BF821373D26007C2C25 /* Inteligentio2.xcdatamodeld in Sources */,
 				3ACB35BF213C351300F91D10 /* PlacementMargins.swift in Sources */,
+				3AB8FA3E21C1C0410014FE05 /* SensorsRepository.swift in Sources */,
+				3AB8FA3021C1BC7F0014FE05 /* SensorsListContract.swift in Sources */,
 				3ABD42CD2142F535005E4C81 /* UIViewControllerExtension.swift in Sources */,
 				3ADB4EC42141AAD400088908 /* IconNames.swift in Sources */,
 				3AABBDFD2198649900E119DB /* GenericRequest.swift in Sources */,
 				3AABBE18219B886D00E119DB /* ScenesListContract.swift in Sources */,
 				3AABBE0A219B6A1A00E119DB /* SwitchCell.swift in Sources */,
 				3ABF0BFA21373D26007C2C25 /* MasterViewController.swift in Sources */,
+				3AB8FA3821C1BDC30014FE05 /* SensorsDataSource.swift in Sources */,
 				3AABBE0C219B792200E119DB /* ScenesController.swift in Sources */,
 				3ADB4EC82141B03C00088908 /* UIColorExtension.swift in Sources */,
+				3AB8FA3621C1BD700014FE05 /* SensorsController.swift in Sources */,
 				3ADB4EC02141A70800088908 /* DataSource.swift in Sources */,
 				3ACB35B7213C329100F91D10 /* MasterListCell.swift in Sources */,
 				3ABF0BFC21373D26007C2C25 /* DetailViewController.swift in Sources */,
+				3AB8FA3B21C1BF0E0014FE05 /* SensorsPresenter.swift in Sources */,
 				3AABBE05219A243D00E119DB /* Repository.swift in Sources */,
 				3AABBE14219B80B600E119DB /* ScenesDataSource.swift in Sources */,
 				3AABBE03219A23E200E119DB /* Results.swift in Sources */,

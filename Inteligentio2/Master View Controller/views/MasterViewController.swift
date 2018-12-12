@@ -47,6 +47,9 @@ class MasterViewController: UITableViewController {
             case MainSection.scenes.rawValue:
                 let viewController = ScenesController()
                 self.splitViewController?.showDetailViewController(viewController, sender: self)
+            case MainSection.sensors.rawValue:
+                let viewController = SensorsController()
+                self.splitViewController?.showDetailViewController(viewController, sender: self)
             default:
                 break;
             }

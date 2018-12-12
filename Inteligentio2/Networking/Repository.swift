@@ -32,7 +32,7 @@ protocol Repository:class {
 
 extension Repository {
     func getAll(baseAddress:String, page:Int, size:Int, result: @escaping ObjectResponse) {
-        let request = Alamofire.request(self.buildUrl(baseAdders: baseAddress), method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]).responseJSON { response in
+        let request = Alamofire.request(self.buildUrl(baseAdders: baseAddress, size: size, page: page), method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]).responseJSON { response in
             self.getObjectsResponse = result
             guard response.error == nil,
                 let data = response.data else {
@@ -50,9 +50,14 @@ extension Repository {
         }
     }
 
-    fileprivate func buildUrl(baseAdders:String)->String {
-        print("requestURL: \(baseAdders + baseClass)")
-        return baseAdders + baseClass;
+    fileprivate func buildUrl(baseAdders:String, size:Int = 0, page:Int = 0)->String {
+        var address = baseAdders
+        address += baseClass
+        address += "?size="
+        address += "\(size)"
+        address += "&page="
+        address += "\(page)"
+        return address
     }
 
     fileprivate func unwrap(data:Data) {
