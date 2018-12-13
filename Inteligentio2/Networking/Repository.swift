@@ -19,19 +19,20 @@ typealias ResultResponse = (_ result: Result<ApiResult>) -> Void
 
 protocol Repository:class {
     associatedtype T:Codable
-    typealias ObjectResponse = (_ objects: ListResult<T>) -> Void
+    typealias GetObjectsResponse = (_ objects: ListResult<T>) -> Void
+    typealias PatchObjectResponse = (_ object: Result<T>) -> Void
     var baseClass:String { get set }
 
 
     //TODO: IMPLEMENT CRUD OPERATIONS
 
 
-    var getObjectsResponse: ObjectResponse? { get set }
+    var getObjectsResponse: GetObjectsResponse? { get set }
 }
 
 
 extension Repository {
-    func getAll(baseAddress:String, page:Int, size:Int, result: @escaping ObjectResponse) {
+    func getAll(baseAddress:String, page:Int, size:Int, result: @escaping GetObjectsResponse) {
         let request = Alamofire.request(self.buildUrl(baseAdders: baseAddress, size: size, page: page), method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]).responseJSON { response in
             self.getObjectsResponse = result
             guard response.error == nil,
@@ -48,6 +49,10 @@ extension Repository {
                 self.getObjectsResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
             }
         }
+    }
+
+    func patchObject(baseAddress:String, object:T, result: @escaping PatchObjectResponse) {
+
     }
 
     fileprivate func buildUrl(baseAdders:String, size:Int = 0, page:Int = 0)->String {
