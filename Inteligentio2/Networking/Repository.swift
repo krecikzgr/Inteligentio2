@@ -28,6 +28,7 @@ protocol Repository:class {
 
 
     var getObjectsResponse: GetObjectsResponse? { get set }
+    var patchObjectResponse: PatchObjectResponse? {get set}
 }
 
 
@@ -52,7 +53,30 @@ extension Repository {
     }
 
     func patchObject(baseAddress:String, object:T, result: @escaping PatchObjectResponse) {
+        let encoder = JSONEncoder()
+        do {
+            let encodedObject = try encoder.encode(object)
 
+            let request = Alamofire.request(baseAddress + baseClass, method: .patch, parameters: encodedObject, encoding: URLEncoding.default, headers: [:]).responseJSON { response in
+                self.patchObjectResponse = result
+                guard response.error == nil,
+                    let data = response.data else {
+                        self.patchObjectResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
+                        return
+                }
+                let decoder = JSONDecoder()
+                do {
+                    let object = try decoder.decode(BaseResponse<T>.self, from: data)
+                    self.getObjectsResponse?(.success(objectsArray))
+                }
+                catch let error {
+                    self.getObjectsResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
+                }
+            }
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     fileprivate func buildUrl(baseAdders:String, size:Int = 0, page:Int = 0)->String {
