@@ -10,6 +10,8 @@ import Foundation
 
 
 class ScenesRepository:Repository {
+    var patchObjectResponse: ((Result<Scene>) -> Void)?
+
     typealias T = Scene
 
     var baseClass: String = "scene"

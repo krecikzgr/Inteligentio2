@@ -8,9 +8,8 @@
 
 import Foundation
 
-class Scene: Codable {
-    var tableName:String?
+class Scene: BaseObject {
     var description:String?
-    var id:Int?
+    var name: String?
     var isActive:Bool?
 }

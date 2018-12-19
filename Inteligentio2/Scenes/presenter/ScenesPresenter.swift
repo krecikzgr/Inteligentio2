@@ -19,6 +19,21 @@ class ScenesPresenter:ScenesPresenterProtocol {
     init(view:ScenesViewProtocol) {
         self.view = view
         self .repository = ScenesRepository()
+
+        let scene = Scene()
+        scene.id = 43
+        scene.name = "SOMERANDOME SCENE"
+
+        self.repository?.patchObject(baseAddress: Server.address.rawValue, object: scene) { [unowned self] (result) in
+            switch result {
+            case let .success(result):
+                print("case success \(result.message)")
+            case let .failure(error):
+                print("some error \(error)")
+            default:
+                print("some other error")
+            }
+        }
     }
 
     func loadScenes(page:Int, size:Int) {

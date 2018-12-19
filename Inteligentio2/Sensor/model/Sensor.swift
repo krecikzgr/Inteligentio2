@@ -9,10 +9,8 @@
 import Foundation
 
 
-class Sensor: Codable {
-    var tableName:String?
+class Sensor: BaseObject {
     var description:String?
-    var id:Int?
     var isActive:Bool?
     var type:Int?
 }

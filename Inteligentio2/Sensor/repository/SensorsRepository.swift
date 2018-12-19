@@ -9,6 +9,8 @@
 import Foundation
 
 class SensorsRepository:Repository, SensorsRepositoryProtocol {
+    var patchObjectResponse: ((Result<Sensor>) -> Void)?
+
     typealias T = Sensor
 
     var baseClass: String = "sensor"

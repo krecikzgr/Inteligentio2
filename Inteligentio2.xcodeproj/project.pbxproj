@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A3D470A21C99D34007DDCF4 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D470921C99D34007DDCF4 /* CodableExtension.swift */; };
 		3AABBDF521971B5C00E119DB /* MasterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBDF421971B5C00E119DB /* MasterDataSource.swift */; };
 		3AABBDFB2197485100E119DB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AABBDFA2197485100E119DB /* Info.plist */; };
 		3AABBDFD2198649900E119DB /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABBDFC2198649900E119DB /* GenericRequest.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A3D470921C99D34007DDCF4 /* CodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
 		3AABBDF421971B5C00E119DB /* MasterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDataSource.swift; sourceTree = "<group>"; };
 		3AABBDFA2197485100E119DB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AABBDFC2198649900E119DB /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				3ABD42C82142F270005E4C81 /* UITableViewExtension.swift */,
 				3ADB4EC72141B03C00088908 /* UIColorExtension.swift */,
 				3ABD42CC2142F535005E4C81 /* UIViewControllerExtension.swift */,
+				3A3D470921C99D34007DDCF4 /* CodableExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				3AB8FA3621C1BD700014FE05 /* SensorsController.swift in Sources */,
 				3ADB4EC02141A70800088908 /* DataSource.swift in Sources */,
 				3ACB35B7213C329100F91D10 /* MasterListCell.swift in Sources */,
+				3A3D470A21C99D34007DDCF4 /* CodableExtension.swift in Sources */,
 				3ABF0BFC21373D26007C2C25 /* DetailViewController.swift in Sources */,
 				3AB8FA3B21C1BF0E0014FE05 /* SensorsPresenter.swift in Sources */,
 				3AABBE05219A243D00E119DB /* Repository.swift in Sources */,
