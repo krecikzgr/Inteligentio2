@@ -62,31 +62,36 @@ extension Repository {
             let encodedJson = try object.asDictionary()
             let url = self.patchUrl(baseAddress: baseAddress, id: object.id ?? 0)
             print("PATCH URL : \(url)")
+            print("EncodedJSON : \(encodedJson)")
             let request = Alamofire.request(url, method: .patch, parameters: encodedJson, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { response in
+                let decodedObject = self.decode(data: response.data)
                 switch response.result {
                 case .failure(let error):
-                    case .suc
-                }
-                print("PATCH RESPONSE: \(String(data: response.data!, encoding: .utf8))")
-                self.patchObjectResponse = result
-                guard response.error == nil,
-                    let data = response.data else {
-                        self.patchObjectResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
-                        return
-                }
-                let decoder = JSONDecoder()
-                do {
-                    let object = try decoder.decode(BaseResponse<T>.self, from: data)
-                   self.patchObjectResponse?(.success(object))
-                }
-                catch let error {
-                    self.getObjectsResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
+                   result(.failure(NSError(domain: "", code: response.response?.statusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: decodedObject?.message ?? ""])))
+                    break
+                case .success:
+                    self.patchObjectResponse?(.success(decodedObject) as! (BaseResponse<T>))
                 }
             }
         }
         catch let error {
             print(error.localizedDescription)
         }
+    }
+
+    fileprivate func decode(data: Data?) -> BaseResponse<T>? {
+        guard let data = data else {
+            print("DECODE DATA IS NIL")
+            return nil
+        }
+        let decoder = JSONDecoder()
+        do {
+            let object = try decoder.decode(BaseResponse<T>.self, from: data)
+            return object
+        }  catch let error {
+            print("Could not decode  \(error)")
+        }
+        return nil
     }
 
     fileprivate func patchUrl(baseAddress:String, id:Int)->String{

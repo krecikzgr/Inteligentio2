@@ -21,6 +21,8 @@ public enum Result<T:Codable> {
 public class BaseResponse<T:Codable>: Codable {
     var message:String?
     var data:T?
+    var statusCode:Int?
+    var errorDescription:String?
 }
 
 public class BaseListResponse<T:Codable>: Codable {
