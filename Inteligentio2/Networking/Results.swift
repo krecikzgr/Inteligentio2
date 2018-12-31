@@ -9,23 +9,31 @@
 import Foundation
 
 public enum ListResult<T:Codable> {
-    case success(BaseListResponse<T>)
+    case success(ResponseList<T>)
     case failure(Error)
 }
 
 public enum Result<T:Codable> {
-    case success(BaseResponse<T>)
+    case success(ResponseObejct<T>)
     case failure(Error)
 }
 
-public class BaseResponse<T:Codable>: Codable {
-    var message:String?
-    var data:T?
-    var statusCode:Int?
-    var errorDescription:String?
+public class BaseResponse: Codable {
+    var message: String?
+    var statusCode: Int?
+    var errorDescription: String?
 }
 
-public class BaseListResponse<T:Codable>: Codable {
-    var message:String?
-    var data:[T]?
+public class ResponseList<T:Codable>: Codable {
+    var data: [T]?
+    var message: String?
+    var statusCode: Int?
+    var errorDescription: String?
+}
+
+public class ResponseObejct<T:Codable>: Codable {
+    var data: T?
+    var message: String?
+    var statusCode: Int?
+    var errorDescription: String?
 }

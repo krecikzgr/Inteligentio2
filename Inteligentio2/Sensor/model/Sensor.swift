@@ -10,6 +10,8 @@ import Foundation
 
 
 class Sensor: BaseObject {
+    var tableName: String?
+    var id: Int?
     var description:String?
     var isActive:Bool?
     var type:Int?

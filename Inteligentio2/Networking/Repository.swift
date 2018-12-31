@@ -9,106 +9,93 @@
 import Foundation
 import Alamofire
 
-class ApiResult:NSObject, Codable {
-    var success:Bool?
-    var message:String?
-    var statusCode:Int?
+class ApiResult: NSObject, Codable {
+    var success: Bool?
+    var message: String?
+    var statusCode: Int?
 }
 
-class BaseObject: Codable {
-    var tableName:String?
-    var id:Int?
+protocol BaseObject: Codable {
+    var tableName: String? { get set }
+    var id: Int? { get set }
 }
 
 typealias ResultResponse = (_ result: Result<ApiResult>) -> Void
 
-protocol Repository:class {
-    associatedtype T:BaseObject
-    typealias GetObjectsResponse = (_ objects: ListResult<T>) -> Void
-    typealias PatchObjectResponse = (_ object: Result<T>) -> Void
-    var baseClass:String { get set }
-
-
-    //TODO: IMPLEMENT CRUD OPERATIONS
-    var getObjectsResponse: GetObjectsResponse? { get set }
-    var patchObjectResponse: PatchObjectResponse? {get set}
+protocol Repository: class {
+    associatedtype T: BaseObject
+    typealias ListResponse = (_ objects: ListResult<T>) -> Void
+    typealias ObjectResponse = (_ objects: Result<T>) -> Void
+    var baseClass: String { get set }
 }
 
 
 extension Repository {
-    func getAll(baseAddress:String, page:Int, size:Int, result: @escaping GetObjectsResponse) {
-        let request = Alamofire.request(self.buildUrl(baseAdders: baseAddress, size: size, page: page), method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]).responseJSON { response in
-            self.getObjectsResponse = result
+    func sendRequest(address: String, method: HTTPMethod, headers: HTTPHeaders, body: Parameters, result: @escaping ListResponse) {
+        let request = Alamofire.request(address, method: method, parameters: body, encoding: URLEncoding.default, headers: headers).responseJSON { response in
             guard response.error == nil,
                 let data = response.data else {
-                self.getObjectsResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
-                return
+                    result(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
+                    return
             }
             let decoder = JSONDecoder()
             do {
-                let objectsArray = try decoder.decode(BaseListResponse<T>.self, from: data)
-                self.getObjectsResponse?(.success(objectsArray))
-            }
-            catch let error {
-                self.getObjectsResponse?(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
-            }
-        }
-    }
-
-
-    func patchObject(baseAddress:String, object:T, result: @escaping PatchObjectResponse) {
-        let encoder = JSONEncoder()
-        do {
-            let encodedJson = try object.asDictionary()
-            let url = self.patchUrl(baseAddress: baseAddress, id: object.id ?? 0)
-            print("PATCH URL : \(url)")
-            print("EncodedJSON : \(encodedJson)")
-            let request = Alamofire.request(url, method: .patch, parameters: encodedJson, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { response in
-                let decodedObject = self.decode(data: response.data)
-                switch response.result {
-                case .failure(let error):
-                   result(.failure(NSError(domain: "", code: response.response?.statusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: decodedObject?.message ?? ""])))
-                    break
-                case .success:
-                    self.patchObjectResponse?(.success(decodedObject) as! (BaseResponse<T>))
+                let objectsArray = try decoder.decode(ResponseList<T>.self, from: data)
+                objectsArray.statusCode = response.response?.statusCode
+                if (200 ... 299).contains(response.response?.statusCode ?? 400) {
+                    result(.success(objectsArray))
+                } else {
+                    result(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Request error \n CODE: \(response.response?.statusCode) + \(objectsArray.message) "])))
                 }
             }
-        }
-        catch let error {
-            print(error.localizedDescription)
+            catch let error {
+                result(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
+            }
         }
     }
 
-    fileprivate func decode(data: Data?) -> BaseResponse<T>? {
-        guard let data = data else {
-            print("DECODE DATA IS NIL")
-            return nil
+    func sendRequest(address: String, method: HTTPMethod, headers: HTTPHeaders, body: Parameters, result: @escaping ObjectResponse) {
+        let request = Alamofire.request(address, method: method, parameters: body, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+            guard response.error == nil,
+                let data = response.data else {
+                    result(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
+                    return
+            }
+            let decoder = JSONDecoder()
+            do {
+                let objectsArray = try decoder.decode(ResponseObejct<T>.self, from: data)
+                objectsArray.statusCode = response.response?.statusCode
+                if (200 ... 299).contains(response.response?.statusCode ?? 400) {
+                    result(.success(objectsArray))
+                } else {
+                    result(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Request error \n CODE: \(response.response?.statusCode) + \(objectsArray.message) "])))
+                }
+            }
+            catch let error {
+                result(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
+            }
         }
-        let decoder = JSONDecoder()
+    }
+
+    func getAll(baseAddress: String, page: Int, size: Int, result: @escaping ListResponse) {
+        let requestBuilder = RequestURLBuilder(baseAddress: baseAddress, port: 3001)
+            .withSize(size: size)
+            .withPage(page: page)
+            .withBaseClass(baseClass: self.baseClass)
+        self.sendRequest(address: requestBuilder.address?.absoluteString ?? "", method: .get, headers: [:], body: [:], result: result)
+    }
+
+    func update(baseAddress: String, object: T, result: @escaping ObjectResponse) {
+        let requestBuilder = RequestURLBuilder(baseAddress: baseAddress, port: 3001)
+            .withBaseClass(baseClass: self.baseClass)
+            .withId(id: object.id ?? 0)
         do {
-            let object = try decoder.decode(BaseResponse<T>.self, from: data)
-            return object
-        }  catch let error {
-            print("Could not decode  \(error)")
+            let encodedJson = try object.asDictionary()
+            self.sendRequest(address: requestBuilder.address?.absoluteString ?? "", method: .patch, headers: [:], body: encodedJson, result: result)
+        } catch let error {
+           result(.failure( NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data decoding Error \(error)"])))
         }
-        return nil
-    }
-
-    fileprivate func patchUrl(baseAddress:String, id:Int)->String{
-        return "\(baseAddress)" + "\(baseClass)" + "/\(id)"
-    }
-
-    fileprivate func buildUrl(baseAdders:String, size:Int = 0, page:Int = 0)->String {
-        var address = baseAdders
-        address += baseClass
-        address += "?size="
-        address += "\(size)"
-        address += "&page="
-        address += "\(page)"
-        return address
-    }
-
-    fileprivate func unwrap(data:Data) {
-
     }
 }
+
+

@@ -31,7 +31,7 @@ class SensorsPresenter: SensorsPresenterProtocol {
         }
     }
 
-    func handleSuccess(result:BaseListResponse<Sensor>) {
+    func handleSuccess(result:ResponseList<Sensor>) {
         var viewData:[SwitchCellData] = []
         for scene in result.data ?? [] {
             var singleRow = SwitchCellData(identifier: "id", title: scene.description ?? "", switchDataState: scene.isActive ?? false, switchSatusChanged: nil)

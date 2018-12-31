@@ -9,7 +9,7 @@
 import Foundation
 
 enum Server:String {
-    case address = "http://192.168.0.111:3001/"
+    case address = "192.168.0.111"
 }
 
 class ScenesPresenter:ScenesPresenterProtocol {
@@ -19,21 +19,6 @@ class ScenesPresenter:ScenesPresenterProtocol {
     init(view:ScenesViewProtocol) {
         self.view = view
         self .repository = ScenesRepository()
-
-        let scene = Scene()
-        scene.id = 43
-        scene.name = "SOMERANDOME SCENE"
-
-        self.repository?.patchObject(baseAddress: Server.address.rawValue, object: scene) { [unowned self] (result) in
-            switch result {
-            case let .success(result):
-                print("case success \(result.message)")
-            case let .failure(error):
-                print("some error \(error)")
-            default:
-                print("some other error")
-            }
-        }
     }
 
     func loadScenes(page:Int, size:Int) {
@@ -50,10 +35,11 @@ class ScenesPresenter:ScenesPresenterProtocol {
         }
     }
 
-    func handleSuccess(result:BaseListResponse<Scene>) {
+    func handleSuccess(result:ResponseList<Scene>) {
         var viewData:[SwitchCellData] = []
+        print("HANDLE SCENES DATA RESPONSE \(result.data)")
         for scene in result.data ?? [] {
-            var singleRow = SwitchCellData(identifier: "id", title: scene.description ?? "", switchDataState: false, switchSatusChanged: nil)
+            var singleRow = SwitchCellData(identifier: "id", title: scene.name ?? "", switchDataState: false, switchSatusChanged: nil)
             viewData.append(singleRow)
         }
         self.view?.set(scenes: viewData)
