@@ -6,6 +6,7 @@ target 'Inteligentio2' do
   use_frameworks!
   pod 'GenericDataSources'
   pod 'Alamofire'
+  pod 'SnapKit'
   # Pods for Inteligentio2
 
   target 'Inteligentio2Tests' do
