@@ -8,15 +8,15 @@
 
 import Foundation
 
-class ScenesDtaSource:DataSource {
-    override init() {
-        super.init()
-    }
-
-    func setViewData(viewData:[SwitchCellData]) {
-        self.items.removeAll()
-        for singleRow in viewData {
-            self.items.append( CellConfigurator<SwitchCell>(viewData: singleRow) )
-        }
-    }
-}
+//class ScenesDtaSource:CollectionViewDataSource {
+//    override init() {
+//        super.init()
+//    }
+//
+//    func setViewData(viewData:[SwitchCellData]) {
+//        self.items.removeAll()
+//        for singleRow in viewData {
+//            self.items.append( CellConfigurator<SwitchCell>(viewData: singleRow) )
+//        }
+//    }
+//}

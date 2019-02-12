@@ -27,6 +27,7 @@ extension DataSource: UITableViewDataSource, UITableViewDelegate {
         cellConfigurator.update(cell: cell)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let onRowSelectionAction = self.onRowSelection else {
             return

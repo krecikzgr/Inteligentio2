@@ -15,8 +15,8 @@ class SensorsDtaSource:DataSource {
 
     func setViewData(viewData:[SwitchCellData]) {
         self.items.removeAll()
-        for singleRow in viewData {
-            self.items.append( CellConfigurator<SwitchCell>(viewData: singleRow) )
-        }
+//        for singleRow in viewData {
+//            self.items.append( CellConfigurator<SwitchCell>(viewData: singleRow) )
+//        }
     }
 }

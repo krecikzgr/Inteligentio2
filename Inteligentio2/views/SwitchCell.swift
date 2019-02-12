@@ -11,14 +11,14 @@ import  UIKit
 
 typealias SwitchStatusChanged = (Bool) -> Void
 
-struct SwitchCellData {
+public struct SwitchCellData {
     var identifier:String
     let title:String
     var switchDataState:Bool
     var switchSatusChanged: SwitchStatusChanged?
 }
 
-open class SwitchCell: UITableViewCell {
+public class SwitchCell: CollectionCell<SwitchCellData> {
 
     var titleLabel:UILabel?
     var containerView:UIView?
@@ -26,17 +26,16 @@ open class SwitchCell: UITableViewCell {
     var switchButton:UISwitch?
     fileprivate var switchSatusChanged: SwitchStatusChanged?
 
-
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    open override func initialize() {
         self.myInit()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.myInit()
+    public override func updateFor(item: SwitchCellData) {
+        self.titleLabel?.text = item.title
+        self.identifier = item.identifier
+        self.switchButton?.isOn = item.switchDataState
+        self.switchSatusChanged = item.switchSatusChanged
     }
-
 
     func myInit() {
         self.initCell()
@@ -49,7 +48,7 @@ open class SwitchCell: UITableViewCell {
     fileprivate func initCell() {
         self.backgroundColor = UIColor.clear
         self.selectedBackgroundView = nil
-        self.selectionStyle = .none
+
     }
 
     fileprivate func initContainerView() {
@@ -70,7 +69,6 @@ open class SwitchCell: UITableViewCell {
         }
         self.switchButton = UISwitch()
         self.switchButton?.translatesAutoresizingMaskIntoConstraints = false
-        //self.switchButton?.backgroundColor = .white
         self.switchButton?.tintColor = UIColor.switchBlueColor()
         self.switchButton?.onTintColor = UIColor.switchBlueColor()
 
@@ -99,6 +97,7 @@ open class SwitchCell: UITableViewCell {
         self.titleLabel?.pinTo(viewOnRight: self.switchButton!, spacing: -5)
     }
 }
+
 
 extension SwitchCell: Updatable {
     typealias ViewData = SwitchCellData

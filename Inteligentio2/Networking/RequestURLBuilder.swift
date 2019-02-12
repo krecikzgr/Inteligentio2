@@ -11,6 +11,7 @@ import Foundation
 class RequestURLBuilder {
     var address: URL? {
         get {
+            print("::REQUEST BUILDE URL \(self.compontents.url)")
             return self.compontents.url
         }
     }

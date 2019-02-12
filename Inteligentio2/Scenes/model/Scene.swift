@@ -9,9 +9,9 @@
 import Foundation
 
 class Scene: BaseObject {
-    var description:String?
+    var description: String?
     var name: String?
-    var isActive:Bool?
+    var isActive: Bool?
     var tableName: String?
     var id: Int?
 }

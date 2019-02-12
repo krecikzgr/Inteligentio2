@@ -28,7 +28,7 @@ class SensorsController: UITableViewController, SensorsViewProtocol {
         self.initLayout()
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
-        self.tableView.register(cellClass: SwitchCell.self)
+        //self.tableView.register(cellClass: SwitchCell.self)
         self.tableView.separatorStyle = .none
     }
 

@@ -22,7 +22,7 @@ enum MainSection: Int {
 class MasterViewController: UITableViewController {
 
     var viewsToShow: [UIViewController] = []
-    var dataSource:MasterDataSource?
+    var dataSource: MasterDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class MasterViewController: UITableViewController {
     func initDataSource() {
         self.dataSource = MasterDataSource()
         self.dataSource?.onRowSelection = { [unowned self] index in
-            switch  index.row {
+            switch index.row {
             case MainSection.scenes.rawValue:
                 let viewController = ScenesController()
                 self.splitViewController?.showDetailViewController(viewController, sender: self)

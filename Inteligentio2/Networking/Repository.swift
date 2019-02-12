@@ -40,6 +40,8 @@ extension Repository {
             }
             let decoder = JSONDecoder()
             do {
+                let dataString = String(data: data, encoding: .utf8)
+                print("::RETURNED STRING \(dataString)")
                 let objectsArray = try decoder.decode(ResponseList<T>.self, from: data)
                 objectsArray.statusCode = response.response?.statusCode
                 if (200 ... 299).contains(response.response?.statusCode ?? 400) {
