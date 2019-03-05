@@ -8,20 +8,20 @@
 
 import Foundation
 
-enum Server:String {
+enum Server: String {
     case address = "192.168.0.111"
 }
 
-class ScenesPresenter:ScenesPresenterProtocol {
-    var repository:ScenesRepository?
+class ScenesPresenter: ScenesPresenterProtocol {
+    var repository: ScenesRepository?
     weak var view: ScenesViewProtocol?
 
-    init(view:ScenesViewProtocol) {
+    init(view: ScenesViewProtocol) {
         self.view = view
         self .repository = ScenesRepository()
     }
 
-    func loadScenes(page:Int, size:Int) {
+    func loadScenes(page: Int, size: Int) {
         self.repository?.getAll(baseAddress: Server.address.rawValue, page: 0, size: 100) {
             [unowned self] (result) in
             switch result {
@@ -35,11 +35,16 @@ class ScenesPresenter:ScenesPresenterProtocol {
         }
     }
 
-    func handleSuccess(result:ResponseList<Scene>) {
-        var viewData:[SwitchCellData] = []
-        print("HANDLE SCENES DATA RESPONSE \(result.data)")
+    func handleSuccess(result: ResponseList<Scene>) {
+        var viewData: [SwitchCellData] = []
+        result.data?.forEach({ (scene) in
+            print("Handle scene list success \(scene.isActive)")
+        })
         for scene in result.data ?? [] {
-            var singleRow = SwitchCellData(identifier: "id", title: scene.name ?? "", switchDataState: false, switchSatusChanged: nil)
+            var singleRow = SwitchCellData(identifier: "id",
+                title: scene.name ?? "",
+                switchDataState: scene.isActive ?? false,
+                switchSatusChanged: nil)
             viewData.append(singleRow)
         }
         self.view?.set(scenes: viewData)

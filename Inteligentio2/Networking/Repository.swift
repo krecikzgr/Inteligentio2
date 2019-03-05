@@ -41,7 +41,7 @@ extension Repository {
             let decoder = JSONDecoder()
             do {
                 let dataString = String(data: data, encoding: .utf8)
-                print("::RETURNED STRING \(dataString)")
+                print("::RETURNED STRING \(dataString!)")
                 let objectsArray = try decoder.decode(ResponseList<T>.self, from: data)
                 objectsArray.statusCode = response.response?.statusCode
                 if (200 ... 299).contains(response.response?.statusCode ?? 400) {
@@ -57,7 +57,7 @@ extension Repository {
     }
 
     func sendRequest(address: String, method: HTTPMethod, headers: HTTPHeaders, body: Parameters, result: @escaping ObjectResponse) {
-        let request = Alamofire.request(address, method: method, parameters: body, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+        _ = Alamofire.request(address, method: method, parameters: body, encoding: URLEncoding.default, headers: headers).responseJSON { response in
             guard response.error == nil,
                 let data = response.data else {
                     result(.failure(response.error ?? NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Serialization error"])))
@@ -70,7 +70,7 @@ extension Repository {
                 if (200 ... 299).contains(response.response?.statusCode ?? 400) {
                     result(.success(objectsArray))
                 } else {
-                    result(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Request error \n CODE: \(response.response?.statusCode) + \(objectsArray.message) "])))
+                    result(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Request error \n CODE: \(String(describing: response.response?.statusCode)) + \(String(describing: objectsArray.message)) "])))
                 }
             }
             catch let error {

@@ -97,15 +97,3 @@ public class SwitchCell: CollectionCell<SwitchCellData> {
         self.titleLabel?.pinTo(viewOnRight: self.switchButton!, spacing: -5)
     }
 }
-
-
-extension SwitchCell: Updatable {
-    typealias ViewData = SwitchCellData
-
-    func update(viewData: SwitchCellData) {
-        self.titleLabel?.text = viewData.title
-        self.identifier = viewData.identifier
-        self.switchButton?.isOn = viewData.switchDataState
-        self.switchSatusChanged = viewData.switchSatusChanged
-    }
-}
