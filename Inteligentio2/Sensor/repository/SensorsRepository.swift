@@ -19,12 +19,4 @@ class SensorsRepository:Repository, SensorsRepositoryProtocol {
 
     fileprivate var setSceneActiveResponse: ResultResponse?
 
-    func setSceneAsActive(result:@escaping ResultResponse) {
-        //        self.setSceneActiveResponse = result
-        //        let resultObject = ApiResult()
-        //        resultObject.message = "Everything is ok"
-        //        resultObject.success = true
-        //        resultObject.statusCode = 200
-        //        self.setSceneActiveResponse?(.success(resultObject))
-    }
 }

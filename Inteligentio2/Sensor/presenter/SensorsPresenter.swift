@@ -33,8 +33,11 @@ class SensorsPresenter: SensorsPresenterProtocol {
 
     func handleSuccess(result:ResponseList<Sensor>) {
         var viewData:[SwitchCellData] = []
-        for scene in result.data ?? [] {
-            var singleRow = SwitchCellData(identifier: "id", title: scene.description ?? "", switchDataState: scene.isActive ?? false, switchSatusChanged: nil)
+        for sensor in result.data ?? [] {
+            var singleRow = SwitchCellData(identifier: sensor.id,
+                                           title: sensor.description ?? "",
+                                           switchDataState: sensor.isActive ?? false,
+                                           switchSatusChanged: nil)
             viewData.append(singleRow)
         }
         self.view?.set(sensors: viewData)

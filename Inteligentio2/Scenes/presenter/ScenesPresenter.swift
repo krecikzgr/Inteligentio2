@@ -41,7 +41,7 @@ class ScenesPresenter: ScenesPresenterProtocol {
             print("Handle scene list success \(scene.isActive)")
         })
         for scene in result.data ?? [] {
-            var singleRow = SwitchCellData(identifier: "id",
+            var singleRow = SwitchCellData(identifier: scene.id,
                 title: scene.name ?? "",
                 switchDataState: scene.isActive ?? false,
                 switchSatusChanged: nil)

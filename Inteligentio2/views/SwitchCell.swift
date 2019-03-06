@@ -7,23 +7,23 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
 
 typealias SwitchStatusChanged = (Bool) -> Void
 
 public struct SwitchCellData {
-    var identifier:String
-    let title:String
-    var switchDataState:Bool
+    var identifier: Int?
+    let title: String
+    var switchDataState: Bool
     var switchSatusChanged: SwitchStatusChanged?
 }
 
 public class SwitchCell: CollectionCell<SwitchCellData> {
 
-    var titleLabel:UILabel?
-    var containerView:UIView?
-    var identifier:String = ""
-    var switchButton:UISwitch?
+    var titleLabel: UILabel?
+    var containerView: UIView?
+    var identifier: Int?
+    var switchButton: UISwitch?
     fileprivate var switchSatusChanged: SwitchStatusChanged?
 
     open override func initialize() {
@@ -55,7 +55,7 @@ public class SwitchCell: CollectionCell<SwitchCellData> {
         guard self.containerView == nil else {
             return
         }
-        self.containerView =  UIView()
+        self.containerView = UIView()
         self.containerView?.translatesAutoresizingMaskIntoConstraints = false
         self.containerView?.backgroundColor = UIColor.mainBackground()
         let placementMargins = PlacementMargins(leftMargin: 10, rightMargin: -10, topMargin: 10, bottomMargin: -10)
@@ -76,7 +76,7 @@ public class SwitchCell: CollectionCell<SwitchCellData> {
         self.containerView?.add(child: self.switchButton!, configuration: margins)
     }
 
-    @objc fileprivate func switchChangedState(){
+    @objc fileprivate func switchChangedState() {
         guard let switchAction = self.switchSatusChanged else {
             return
         }

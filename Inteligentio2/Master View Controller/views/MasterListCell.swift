@@ -12,7 +12,6 @@ import UIKit
 struct MasterViewCellData {
     var identifier:String
     let title:String
-    //let iconName: IconNames
 }
 
 open class MasterListCell: UITableViewCell {

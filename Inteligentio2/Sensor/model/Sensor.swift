@@ -15,4 +15,5 @@ class Sensor: BaseObject {
     var description:String?
     var isActive:Bool?
     var type:Int?
+    var roomId: Int?
 }
