@@ -12,12 +12,12 @@ class RoomsPresenter: RoomsPresenterProtocol {
     var repository: RoomsRepository?
     weak var view: RoomsViewProtocol?
 
-    init(view:RoomsViewProtocol, repository: RoomsRepository? = nil) {
+    init(view: RoomsViewProtocol, repository: RoomsRepository? = nil) {
         self.view = view
         self.repository = repository ?? RoomsRepository()
     }
 
-    func loadRooms(page:Int, size:Int) {
+    func loadRooms(page: Int, size: Int) {
         self.repository?.getAll(baseAddress: Server.address.rawValue, page: 0, size: 100) {
             [unowned self] (result) in
             switch result {
@@ -31,13 +31,12 @@ class RoomsPresenter: RoomsPresenterProtocol {
         }
     }
 
-    func handleSuccess(result:ResponseList<Room>) {
-        var viewData:[SwitchCellData] = []
+    func handleSuccess(result: ResponseList<Room>) {
+        var viewData: [HeaderCellViewData] = []
         for room in result.data ?? [] {
-            var singleRow = SwitchCellData(identifier: room.id,
-                                           title: room.description ?? "",
-                                           switchDataState: room.isActive ?? false,
-                                           switchSatusChanged: nil)
+            var singleRow = HeaderCellViewData(identifier: room.id,
+                title: room.name ?? "",
+                icon: nil)
             viewData.append(singleRow)
         }
         self.view?.set(rooms: viewData)

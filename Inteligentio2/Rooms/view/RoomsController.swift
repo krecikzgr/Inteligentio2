@@ -13,7 +13,7 @@ import UIKit
 class RoomsController: UICollectionViewController, RoomsViewProtocol {
     var dataSource: CollectionViewDataSource?
     var presenter: RoomsPresenterProtocol?
-    var roomsSection: CollectionViewSection<SwitchCell, SwitchCellData>?
+    var roomsSection: CollectionViewSection<VerticalCell<HeaderCell, HeaderCellViewData>, [HeaderCellViewData]>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +29,16 @@ class RoomsController: UICollectionViewController, RoomsViewProtocol {
     }
 
     func initCollectionView() {
-        self.collectionView.backgroundColor = .mainBackground()
+        self.collectionView.backgroundColor = .mainDark()
     }
 
     func initDataSource() {
         self.dataSource = CollectionViewDataSource(collectionView: self.collectionView)
-        let sceneSection = CollectionViewSection<SwitchCell, SwitchCellData>.build { (section) in
+        self.roomsSection = CollectionViewSection<VerticalCell<HeaderCell, HeaderCellViewData>, [HeaderCellViewData]>.build { (section) in
             section.numberOfColumns = 1
+            section.cellHeight = 200
         }
-        self.sceneSection = sceneSection
-        self.dataSource?.addSection(section: sceneSection)
+        self.dataSource?.addSection(section: self.roomsSection!)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +51,8 @@ class RoomsController: UICollectionViewController, RoomsViewProtocol {
         // Dispose of any resources that can be recreated.
     }
 
-    func set(rooms: [SwitchCellData]) {
-        
+    func set(rooms: [HeaderCellViewData]) {
+        self.roomsSection?.items = [rooms]
+        self.collectionView.reloadData()
     }
 }

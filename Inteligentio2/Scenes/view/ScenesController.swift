@@ -30,6 +30,7 @@ class ScenesController: UICollectionViewController, ScenesViewProtocol {
 
     func initCollectionView() {
         self.collectionView.backgroundColor = .mainBackground()
+        self.collectionView.backgroundColor = UIColor.mainDark()
     }
 
     func initDataSource() {
