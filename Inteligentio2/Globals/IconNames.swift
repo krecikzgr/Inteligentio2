@@ -10,4 +10,7 @@ import Foundation
 
 enum IconNames:String {
     case icon1 = "String"
+    case bedrrom = "icons8-bedroom"
+    case lightOff = "icons8-light_off"
+    case lightOn = "icons8-light_on"
 }

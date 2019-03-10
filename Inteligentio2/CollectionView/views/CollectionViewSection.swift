@@ -60,6 +60,9 @@ public class CollectionViewSection<T: CollectionCell<Item>, Item>: SectionCellCo
         } else if self.cellWidth != nil {
             self.configureCellForFixedWidth(cell: cell, index: index.row)
         }
+        if let verticalCell = cell as? VerticalCell<VerticalCell<T, Item>, [Item]>{
+            verticalCell.parent = self
+        }
         cell.setupHeight(height: self.cellHeight)
         (cell as! T).updateFor(item: item)
     }

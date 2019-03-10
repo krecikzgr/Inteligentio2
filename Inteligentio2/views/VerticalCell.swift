@@ -14,6 +14,7 @@ public class VerticalCell<Cell:CollectionCell<CellData>, CellData>: CollectionCe
     var collectionView: UICollectionView?
     var dataSource: CollectionViewDataSource?
     var mainSection: CollectionViewSection<Cell, CellData>?
+    weak var parent: CollectionViewSection<VerticalCell<Cell, CellData>, [CellData]>?
 
     open override func initialize() {
         self.initCollectionView()
@@ -46,6 +47,9 @@ public class VerticalCell<Cell:CollectionCell<CellData>, CellData>: CollectionCe
     fileprivate func initMainSection() {
         self.mainSection = CollectionViewSection<Cell, CellData>.build(block: { (section) in
             section.numberOfColumns = nil
+            section.onItemClickAction = { item, indexPath in
+                self.parent?.onItemClickAction?(item, indexPath)
+            }
         })
     }
 

@@ -36,7 +36,8 @@ class RoomsPresenter: RoomsPresenterProtocol {
         for room in result.data ?? [] {
             var singleRow = HeaderCellViewData(identifier: room.id,
                 title: room.name ?? "",
-                icon: nil)
+                icon: nil,
+                isActive: room.isActive ?? false)
             viewData.append(singleRow)
         }
         self.view?.set(rooms: viewData)

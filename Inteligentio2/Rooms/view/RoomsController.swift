@@ -13,7 +13,7 @@ import UIKit
 class RoomsController: UICollectionViewController, RoomsViewProtocol {
     var dataSource: CollectionViewDataSource?
     var presenter: RoomsPresenterProtocol?
-    var roomsSection: CollectionViewSection<VerticalCell<HeaderCell, HeaderCellViewData>, [HeaderCellViewData]>?
+    var roomsSection: CollectionViewSection<VerticalCell<RoomHeaderCell, HeaderCellViewData>, [HeaderCellViewData]>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,12 @@ class RoomsController: UICollectionViewController, RoomsViewProtocol {
 
     func initDataSource() {
         self.dataSource = CollectionViewDataSource(collectionView: self.collectionView)
-        self.roomsSection = CollectionViewSection<VerticalCell<HeaderCell, HeaderCellViewData>, [HeaderCellViewData]>.build { (section) in
+        self.roomsSection = CollectionViewSection<VerticalCell<RoomHeaderCell, HeaderCellViewData>, [HeaderCellViewData]>.build { (section) in
             section.numberOfColumns = 1
-            section.cellHeight = 200
+            section.cellHeight = 80
+            section.onItemClickAction = { item, indexPath in
+                print("Did Select item at indexpath \(indexPath)")
+            }
         }
         self.dataSource?.addSection(section: self.roomsSection!)
     }

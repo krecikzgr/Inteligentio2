@@ -11,7 +11,7 @@ import UIKit
 
 extension UIImage {
 
-    class func global(image: IconNames) -> UIImage {
+    class func global(_ image: IconNames) -> UIImage {
         return UIImage(named: image.rawValue)?.withRenderingMode(.alwaysTemplate) ?? UIImage()
     }
 
